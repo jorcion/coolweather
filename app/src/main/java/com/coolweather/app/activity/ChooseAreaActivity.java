@@ -17,7 +17,7 @@ import android.widget.Toast;
 
 import com.coolweather.app.R;
 import com.coolweather.app.model.City;
-import com.coolweather.app.model.CoolWeatherDB;
+import com.coolweather.app.db.CoolWeatherDB;
 import com.coolweather.app.model.County;
 import com.coolweather.app.model.Province;
 import com.coolweather.app.util.HttpCallbackListener;
@@ -30,7 +30,7 @@ import java.util.List;
 /**
  * Created by zoc on 2016/4/24.
  */
-public class ChooseAreaActivity  extends Activity{
+public class ChooseAreaActivity  extends Activity {
     public static final int LEVEL_PROVINCE = 0;
     public static final int LEVEL_CITY = 1;
     public static final int LEVEL_COUNTY = 2;
@@ -263,4 +263,5 @@ public class ChooseAreaActivity  extends Activity{
             finish();
         }
     }
+
 }

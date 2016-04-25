@@ -10,6 +10,7 @@ import android.database.sqlite.SQLiteOpenHelper;
  */
 public class CoolWeatherOpenHelper extends SQLiteOpenHelper {
 
+
     /**
      *  Province表建表语句
      */
@@ -34,19 +35,19 @@ public class CoolWeatherOpenHelper extends SQLiteOpenHelper {
             + "county_code text, "
             + "city_id integer)";
 
-    public CoolWeatherOpenHelper(Context context, String name, CursorFactory factory, int version) {
+    public CoolWeatherOpenHelper(Context context, String name, CursorFactory factory,
+                                 int version) {
         super(context, name, factory, version);
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL(CREATE_PROVINCE);
-        db.execSQL(CREATE_CITY);
-        db.execSQL(CREATE_COUNTY);
+        db.execSQL(CREATE_PROVINCE);  // 创建Province表
+        db.execSQL(CREATE_CITY);  // 创建City表
+        db.execSQL(CREATE_COUNTY);  // 创建County表
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
     }
 }

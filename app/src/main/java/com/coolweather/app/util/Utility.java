@@ -6,7 +6,7 @@ import android.preference.PreferenceManager;
 import android.text.TextUtils;
 
 import com.coolweather.app.model.City;
-import com.coolweather.app.model.CoolWeatherDB;
+import com.coolweather.app.db.CoolWeatherDB;
 import com.coolweather.app.model.County;
 import com.coolweather.app.model.Province;
 
@@ -23,9 +23,10 @@ import java.util.Locale;
 public class Utility {
 
     /**
-     *  解析和处理服务器返回的省级数据
+     * 解析和处理服务器返回的省级数据
      */
-    public synchronized static boolean handleProvincesResponse(CoolWeatherDB coolWeatherDB, String response) {
+    public synchronized static boolean handleProvincesResponse(
+            CoolWeatherDB coolWeatherDB, String response) {
         if (!TextUtils.isEmpty(response)) {
             String[] allProvinces = response.split(",");
             if (allProvinces != null && allProvinces.length > 0) {
@@ -34,7 +35,7 @@ public class Utility {
                     Province province = new Province();
                     province.setProvinceCode(array[0]);
                     province.setProvinceName(array[1]);
-                    //将解析处理的数据存储到Province表
+                    // 将解析出来的数据存储到Province表
                     coolWeatherDB.saveProvince(province);
                 }
                 return true;
@@ -90,7 +91,7 @@ public class Utility {
     }
 
     /**
-     *  解析服务器返回的JSON数据，并将解析出的数据存储到本地
+     * 解析服务器返回的JSON数据，并将解析出的数据存储到本地。
      */
     public static void handleWeatherResponse(Context context, String response) {
         try {
@@ -102,8 +103,9 @@ public class Utility {
             String temp2 = weatherInfo.getString("temp2");
             String weatherDesp = weatherInfo.getString("weather");
             String publishTime = weatherInfo.getString("ptime");
-            saveWeatherInfo(context, cityName, weatherCode, temp1, temp2, weatherDesp, publishTime);
-        } catch (Exception e) {
+            saveWeatherInfo(context, cityName, weatherCode, temp1, temp2,
+                    weatherDesp, publishTime);
+        } catch (JSONException e) {
             e.printStackTrace();
         }
     }
